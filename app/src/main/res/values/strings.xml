@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Roots</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="signing">Sign In</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="report_problem_in_route">Report problem in route</string>
+    <string name="show_on_map">Show On Map</string>
+    <string name="whats_the_problem">Whats the problem?</string>
+    <string name="calculate">Calculate</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+        AIzaSyDrz_oA5DgzJVVbyLjsOMpfAmTiLZZVmGQ</string>
+</resources>
