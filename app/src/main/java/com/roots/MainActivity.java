@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +32,10 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+    private EditText etProblem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,16 +44,16 @@ public class MainActivity extends AppCompatActivity {
         final Button btn_map = (Button) findViewById(R.id.showOnMap);
         final Button btn_jam = (Button) findViewById(R.id.btnJam);
         final TextView texFare = (TextView) findViewById(R.id.textFare);
-        final EditText etProblem = (EditText) findViewById(R.id.et_problem);
+        etProblem = (EditText) findViewById(R.id.et_problem);
 
         final MaterialSpinner mFrom = (MaterialSpinner) findViewById(R.id.spinner);
         final MaterialSpinner mTo = (MaterialSpinner) findViewById(R.id.spinner2);
 
         final ArrayList<String> mStops = new ArrayList<String>();
 
-        final Map<String, Integer> mStopsDistances = new HashMap<String, Integer>();
+        final Map<String, Integer> mStopsDistances = new HashMap<>();
 
-        final Map<String, ParseGeoPoint> mStopsLatLong = new HashMap<String, ParseGeoPoint>();
+        final Map<String, ParseGeoPoint> mStopsLatLong = new HashMap<>();
 
         final MaterialDialog rLoader = new MaterialDialog.Builder(this)
                 .title("Please Wait")
@@ -167,17 +172,17 @@ public class MainActivity extends AppCompatActivity {
                         mStopsDistances.get(mTo.getText()));
 
                 if (total_dist <= 3) {
-                    texFare.setText("Total Fare is Rs 5");
+                    texFare.setText(R.string.fare_rs_5);
                 } else if (total_dist <= 7) {
-                    texFare.setText("Total Fare is Rs 8");
+                    texFare.setText(R.string.fare_rs_8);
                 } else {
-                    texFare.setText("Total Fare is Rs 10");
+                    texFare.setText(R.string.fare_rs_10);
                 }
 
                 btn_map.setVisibility(View.VISIBLE);
                 texFare.setVisibility(View.VISIBLE);
                 btn_jam.setVisibility(View.VISIBLE);
-                etProblem.setVisibility(View.GONE);
+                etProblem.setVisibility(View.VISIBLE);
             }
         });
 
@@ -217,11 +222,10 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     mStopsDist.put(stops.getString(i), distances.getInt(i));
                 } catch (JSONException e) {
-
+                    Log.e(TAG, "JSONToMap: ", e);
                 }
             }
         }
-
     }
 
     public ArrayList<String> StringArraySkip(JSONArray items, String skip) {
@@ -233,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
                         itemsList.add(items.getString(i));
                     }
                 } catch (JSONException e) {
-
+                    Log.e(TAG, "StringArraySkip: ", e);
                 }
             }
         }
@@ -246,9 +250,13 @@ public class MainActivity extends AppCompatActivity {
         ParseCloud.callFunctionInBackground("sendPushToUser", params, new FunctionCallback<String>() {
             public void done(String success, ParseException e) {
                 if (e == null) {
-                    // Toast.makeText(MainActivity.this, "Push Send", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, R.string.problem_submitted_successfully,
+                            Toast.LENGTH_SHORT).show();
+                    etProblem.setText("");
                 } else {
-                    //Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.error_submitting_problem),
+                            Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "done: ", e);
                 }
             }
         });

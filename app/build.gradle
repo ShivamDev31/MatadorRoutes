@@ -29,6 +29,7 @@ dependencies {
     compile 'com.jaredrummler:material-spinner:1.1.0'
     compile 'com.afollestad.material-dialogs:core:0.9.3.0'
     compile 'com.google.android.gms:play-services-maps:10.2.1'
+    compile 'com.google.android.gms:play-services-location:10.2.1'
     // For android runtime permission. Which was introduced in Android 6 --> Marshmallow
     compile 'com.karumi:dexter:4.0.0'
 }

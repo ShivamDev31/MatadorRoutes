@@ -9,6 +9,13 @@
     <string name="whats_the_problem">Whats the problem?</string>
     <string name="calculate">Calculate</string>
     <string name="sign_up">Sign Up</string>
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
-        AIzaSyDrz_oA5DgzJVVbyLjsOMpfAmTiLZZVmGQ</string>
+
+    <string name="google_maps_api_key">AIzaSyA6sLeVHDpiKRHcyGpBdRMgST-eSjaOSP0</string>
+    <string name="choose_destination">Choose Destination</string>
+    <string name="choose_starting_point">Choose Starting Point</string>
+    <string name="problem_submitted_successfully">Problem submitted successfully.</string>
+    <string name="error_submitting_problem">Error while submitting.</string>
+    <string name="fare_rs_5">Total Fare is \u20b9 5</string>
+    <string name="fare_rs_8">Total Fare is \u20b9 8</string>
+    <string name="fare_rs_10">Total Fare is \u20b9 10</string>
 </resources>
